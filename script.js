@@ -15,4 +15,5 @@ fetch('produkte.json')
       `;
       container.appendChild(card);
     });
-  });
+  })
+  .catch(err => console.log("Fehler beim Laden der Produkte: ", err));
