@@ -1,12 +1,17 @@
 [
   {
-    "name": "T-Shirt",
+    "name": "T-Shirt Schwarz",
     "preis": 19.99,
-    "bild": "https://via.placeholder.com/250?text=T-Shirt"
+    "bild": "https://via.placeholder.com/200x200?text=T-Shirt+Schwarz"
   },
   {
-    "name": "Kappe",
-    "preis": 9.99,
-    "bild": "https://via.placeholder.com/250?text=Kappe"
+    "name": "Hoodie Blau",
+    "preis": 39.99,
+    "bild": "https://via.placeholder.com/200x200?text=Hoodie+Blau"
+  },
+  {
+    "name": "Sneaker Weiß",
+    "preis": 59.99,
+    "bild": "https://via.placeholder.com/200x200?text=Sneaker+Weiß"
   }
 ]
