@@ -8,10 +8,5 @@
     "name": "Hoodie Blau",
     "preis": 39.99,
     "bild": "https://via.placeholder.com/200x200?text=Hoodie+Blau"
-  },
-  {
-    "name": "Sneaker Weiß",
-    "preis": 59.99,
-    "bild": "https://via.placeholder.com/200x200?text=Sneaker+Weiß"
   }
 ]
