@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mein Webshop</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 0; background: #f4f4f4; }
+    .shop-container { display: flex; flex-wrap: wrap; padding: 20px; gap: 20px; justify-content: center; }
+    .product { background: white; padding: 10px; width: 250px; border-radius: 8px; text-align: center; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    .product img { width: 100%; height: auto; }
+    .cart { position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2); width: 220px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 style="text-align:center; padding:20px;">Mein Webshop</h1>
+</header>
+
+<div class="shop-container" id="shop"></div>
+
+<div class="cart">
+  <h3>Warenkorb</h3>
+  <ul id="warenkorb"></ul>
+  <p><strong>Gesamt:</strong> <span id="gesamt">0</span>€</p>
+  <button onclick="bezahlen()">Mit PayPal bezahlen</button>
+</div>
+
+<script>
+  const shop = document.getElementById("shop");
+  const warenkorbList = document.getElementById("warenkorb");
+  const gesamtAnzeige = document.getElementById("gesamt");
+  let warenkorb = JSON.parse(localStorage.getItem("warenkorb")) || [];
+  let gesamt = 0;
+
+  async function ladeProdukte() {
+    const res = await fetch("produkte.json");
+    const produkte = await res.json();
+
+    produkte.forEach(p => {
+      const el = document.createElement("div");
+      el.className = "product";
+      el.innerHTML = `
+        <img src="${p.bild}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.preis}€</p>
+        <button onclick='inWarenkorb(${JSON.stringify(p)})'>In den Warenkorb</button>
+      `;
+      shop.appendChild(el);
+    });
+    aktualisiereWarenkorb();
+  }
+
+  function inWarenkorb(p) {
+    warenkorb.push(p);
+    localStorage.setItem("warenkorb", JSON.stringify(warenkorb));
+    aktualisiereWarenkorb();
+  }
+
+  function aktualisiereWarenkorb() {
+    warenkorbList.innerHTML = "";
+    gesamt = 0;
+    warenkorb.forEach(p => {
+      const li = document.createElement("li");
+      li.textContent = ${p.name} - ${p.preis}€;
+      warenkorbList.appendChild(li);
+      gesamt += p.preis;
+    });
+    gesamtAnzeige.textContent = gesamt.toFixed(2);
+  }
+
+  function bezahlen() {
+    const url = "https://www.paypal.com/paypalme/deinname/" + gesamt.toFixed(2);
+    window.open(url, "_blank");
+  }
+
+  ladeProdukte();
+</script>
+
+</body>
+</html>

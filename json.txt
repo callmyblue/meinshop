@@ -1,0 +1,12 @@
+[
+  {
+    "name": "T-Shirt",
+    "preis": 19.99,
+    "bild": "https://via.placeholder.com/250?text=T-Shirt"
+  },
+  {
+    "name": "Kappe",
+    "preis": 9.99,
+    "bild": "https://via.placeholder.com/250?text=Kappe"
+  }
+]
